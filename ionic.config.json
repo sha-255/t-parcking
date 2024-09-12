@@ -1,0 +1,7 @@
+{
+  "name": "simple-parcking",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
