@@ -1,2 +1,29 @@
 /* For information on how to create your own theme, please see:
 http://ionicframework.com/docs/theming/ */
+:root.ios,{
+}
+:root.md {
+--ion-text-color: #000;
+  --primary-color: #fff;
+  --ion-color-primary: var(--primary-color);
+  --header-md-shadow-default: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+  --header-md-shadow: 0 2px 4px -1px rgba(206, 26, 55, 0.2),
+    0 4px 5px 0 rgba(206, 26, 55, 0.14), 0 1px 10px 0 rgba(206, 26, 55, 0.12);
+  --ion-background-color: #fff;
+  --ion-toolbar-background: var(--primary-color);
+  --ion-button-
+}
+
+.header-md {
+  -webkit-box-shadow: var(--header-md-shadow);
+  box-shadow: var(--header-md-shadow);
+}
+
+@media (prefers-color-scheme: light) {
+  .title-default {
+    color: #fff;
+
+  }
+}
+
