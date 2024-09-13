@@ -53,7 +53,7 @@ import {
   useIonRouter,
 } from "@ionic/vue";
 import { onMounted, ref } from "vue";
-import { ACCESS_STR, API_STR } from "../api";
+import { ACCESS_STR, API_STR } from "../api/";
 
 const router = useIonRouter();
 
