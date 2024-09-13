@@ -14,6 +14,7 @@
             height="28"
             viewBox="0 0 102 28"
             fill="none"
+            style="margin-top: 3px"
             xmlns="http://www.w3.org/2000/svg"
             class="height: 34px; padding: 0 1.5px;"
           >
@@ -33,7 +34,7 @@
             />
           </svg>
           <button class="profile">
-            {{ userStore.userData?.name }}
+            Георгий
             <svg
               width="38"
               height="38"
@@ -72,125 +73,19 @@
           <a href="/parking-space">Добавить парковочные места</a>
         </div>
       </div>
-      <div class="main">
-        <div class="left">
-          <div class="adres-office">Адреса офисов</div>
-          <div class="adress"></div>
-          <!-- adresses pick -->
-          <button
-            :class="{
-              adresses: true,
-              pick: selectedOffice === idx,
-            }"
-            v-for="(office, idx) in offices?.offices"
-            :key="idx"
-            @click="selectedOffice = idx"
-          >
-            {{ office?.name }}
-          </button>
+      <main>
+        <div>
+          <button @click="yaNaMeste">Я на месте</button>
+          <br />
+          <button @click="otmena">Отменить запись</button>
         </div>
-        <div class="right">
-          <div class="haract-avto">Характеристики автомобиля</div>
-          <div class="characteristics">
-            <div class="height">
-              Высота
-              <input class="input-height" />
-            </div>
-            <div class="lengt">
-              Длина
-              <input class="input-length" />
-            </div>
-            <div class="width">
-              Ширина
-              <input class="input-width" />
-            </div>
-          </div>
-          <div class="floors">
-            <button
-              class="floor1"
-              v-for="(floor, idx) in new Array(offices?.offices.max_floor).fill(
-                0
-              )"
-              :key="idx"
-            >
-              Этаж {{ idx + 1 }}
-            </button>
-          </div>
-          <div class="sectors">
-            <button class="sectors1">Сектор 1</button>
-          </div>
-          <div class="park-tags">
-            <div class="parcking-grid">
-              <!-- park-place1 orange green purpur red yellow place-pick -->
-              <button
-                :class="{
-                  pp: true,
-                  ppi: selectedSpace === space.id,
-                  orange: space.status === 'booked_and_used',
-                  green: space.status === 'free',
-                  red: space.status === 'booked',
-                  yellow: space.status === 'not_booked_and_use',
-                }"
-                v-for="space in offices?.offices[selectedOffice]
-                  ?.parking_spaces"
-                :key="space.id"
-                @click="selectedSpace = space.id"
-              >
-                {{ space.id }}
-              </button>
-            </div>
-            <div class="tags">
-              <div class="place-map">
-                <div class="place-num" v-if="selectedSpace">
-                  Место № {{ selectedSpace }}
-                  <button class="button-map">Карта</button>
-                </div>
-              </div>
-              <div class="tag-box">
-                <div class="photo-place">Место для вашего фото</div>
-                <div class="about-place">Описание места</div>
-                <ul>
-                  <li>Первое</li>
-                  <li>Второе</li>
-                  <li>Третье</li>
-                  <li>Четвертое</li>
-                  <li>Пятое</li>
-                  <li>Шестое</li>
-                </ul>
-                <button
-                  class="bron"
-                  v-if="selectedSpace"
-                  @click="booking(() => router.push('/booking'))"
-                >
-                  Забронировать
-                </button>
-                <span v-if="exc">Место уже занято</span>
-
-                <!-- <button class="bron">Я на месте</button>->booked_and_used
-                <button class="bron">Отменить запись</button> -->
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="symbol">
-        <div class="purpur-circle"></div>
-        <div>Закреплено за сотрудником</div>
-        <div class="green-circle"></div>
-        <div>Свободно</div>
-        <div class="red-circle"></div>
-        <div>Занято</div>
-        <div class="orange-circle"></div>
-        <div>Занято, но не забронировано</div>
-        <div class="blue-circle"></div>
-        <div>Забронировано</div>
-      </div>
-      <div class="footer-line"></div>
+        <!-- <form id="create-office-form"></form> -->
+      </main>
     </ion-content>
   </ion-page>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import {
   IonPage,
   IonContent,
@@ -199,33 +94,22 @@ import {
   IonTitle,
   useIonRouter,
 } from "@ionic/vue";
-import { onMounted, ref, watch } from "vue";
-import { ACCESS_STR, API_STR } from "../api";
-import { useUserDataStore } from "@/stores/user-data-store";
-import { useOfficesStore } from "@/stores/offices-store";
+import { onMounted } from "vue";
+import { ACCESS_STR } from "../api";
+import { API_STR } from "../api";
 
 const router = useIonRouter();
-const userStore = useUserDataStore();
-const offices = useOfficesStore();
-
-const selectedOffice = ref(0);
-const selectedSpace = ref(Number.NaN);
-const exc = ref(false);
-
-watch(selectedSpace, () => {
-  exc.value = false;
-});
 
 onMounted(() => {
-  userStore.getData();
-  offices.getAll();
   //TODO: fech
   if (!localStorage.getItem(ACCESS_STR)) {
     router.push("/auth");
   }
 });
 
-const booking = async (cb?: any) => {
+const yaNaMeste = async () => {
+  //booked_and_used;
+  const ss = Number.parseInt(localStorage.getItem("ss"));
   const myHeaders = new Headers();
   myHeaders.append("Accept", "application/json");
   myHeaders.append("Content-Type", "application/json");
@@ -235,7 +119,7 @@ const booking = async (cb?: any) => {
   );
 
   const raw = JSON.stringify({
-    status: "booked",
+    status: "booked_and_used",
   });
 
   const requestOptions = {
@@ -246,14 +130,46 @@ const booking = async (cb?: any) => {
 
   try {
     const response = await fetch(
-      `${API_STR}parking-space/${selectedSpace.value}/status`,
+      `${API_STR}parking-space/${ss}/status`,
       requestOptions
     );
     const result = await response.json();
     console.log(result);
-    if (cb && !result?.message) cb();
-    else exc.value = true;
-    localStorage.setItem("ss", selectedSpace.value.toString());
+    router.push("/home");
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const otmena = async () => {
+  //free;
+  const ss = Number.parseInt(localStorage.getItem("ss"));
+  const myHeaders = new Headers();
+  myHeaders.append("Accept", "application/json");
+  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append(
+    "Authorization",
+    "Bearer " + localStorage.getItem(ACCESS_STR)
+  );
+
+  const raw = JSON.stringify({
+    status: "free",
+  });
+
+  const requestOptions = {
+    method: "PATCH",
+    headers: myHeaders,
+    body: raw,
+  };
+
+  try {
+    const response = await fetch(
+      `${API_STR}parking-space/${ss}/status`,
+      requestOptions
+    );
+    const result = await response.json();
+    console.log(result);
+    router.push("/home");
   } catch (error) {
     console.error(error);
   }
@@ -265,6 +181,7 @@ const booking = async (cb?: any) => {
   background-color: #f6f7f8;
   padding-bottom: 30px;
 }
+
 .abkB2BViB {
   display: flex;
   justify-content: space-between;
@@ -274,6 +191,49 @@ const booking = async (cb?: any) => {
   min-width: 1104px;
   border-bottom: 1px solid #000000;
 }
+
+.menu {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.menu a {
+  color: black;
+  text-decoration: none;
+  margin-left: 10px;
+  background-color: #ffdd2d;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+#create-office-form {
+  border-radius: 10px;
+  max-width: 500px;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 20px;
+  background-color: #ffdd2d;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+#create-office-form input {
+  margin-top: 10px;
+  background-color: white;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+#create-office-form button {
+  padding: 10px;
+  background-color: black;
+  border-radius: 10px;
+}
+
 .bb7KbFN66 {
   height: 34px;
   padding: 0 1.5px;
@@ -281,6 +241,7 @@ const booking = async (cb?: any) => {
   align-items: center;
   margin-top: 10px;
 }
+
 .profile {
   color: black;
   align-items: center;
@@ -290,63 +251,85 @@ const booking = async (cb?: any) => {
   margin-left: auto;
   background-color: var(--tui-background-elevation-1);
 }
+
 .parkovki {
   display: flex;
   color: black;
   box-sizing: border-box;
-  margin: 0 auto;
-  max-width: 1104px;
-  min-width: 1104px;
+  align-content: space-around;
+  justify-content: space-around;
+  margin-top: 10px;
 }
+
 .main {
   display: flex;
   margin: 0 auto;
   max-width: 1104px;
 }
+
 .adres-office {
   color: black;
   border-bottom: 1px solid #d8dbde;
   font-size: 1.5vw;
   margin-top: 60%;
 }
+
 .adress {
   display: flex;
 }
+
 .adresses {
   margin-top: 15px;
   border-radius: 15px;
   padding: 10px;
   background-color: var(--tui-background-elevation-1);
   border-radius: 15px;
-  box-shadow: 0px 3px 8px 3px rgb(0 0 0 / 25%);
+  box-shadow: 0 6px 15px 1px rgba(0, 0, 0, 0.12);
   font-size: 20px;
   color: black;
   padding-right: 130px;
   padding-top: 15px;
   padding-bottom: 15px;
 }
-.pick {
+
+.adresses2 {
+  margin-top: 15px;
+  border-radius: 15px;
+  padding: 10px;
   background-color: #ffdd2d;
+  border-radius: 15px;
+  box-shadow: 0 6px 15px 1px rgba(0, 0, 0, 0.12);
+  font-size: 20px;
+  color: black;
+  padding-right: 130px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
+
 .haract-avto {
   font-size: 1.5vw;
+  text-align: center;
   border-bottom: 1px solid #d8dbde;
   margin-top: 10px;
+  padding-bottom: 20px;
 }
+
 .right {
   margin-left: 123px;
   max-width: 766px;
   min-width: 766px;
 }
+
 .input-height {
   margin-left: 20px;
   background-color: white;
   border-radius: 5px;
   background-color: var(--tui-background-elevation-1);
   border: 1px solid #ffffff;
-  box-shadow: 0px 3px 8px 3px rgb(0 0 0 / 20%);
+  box-shadow: 0 6px 15px 1px rgba(0, 0, 0, 0.12);
   max-width: 120px;
 }
+
 .characteristics {
   display: flex;
   justify-content: space-evenly;
@@ -354,24 +337,27 @@ const booking = async (cb?: any) => {
   padding-left: 35px;
   padding-right: 35px;
 }
+
 .input-length {
   margin-left: 20px;
   background-color: white;
   border-radius: 5px;
   background-color: var(--tui-background-elevation-1);
   border: 1px solid #ffffff;
-  box-shadow: 0px 3px 8px 3px rgb(0 0 0 / 20%);
+  box-shadow: 0 6px 15px 1px rgba(0, 0, 0, 0.12);
   max-width: 120px;
 }
+
 .input-width {
   margin-left: 20px;
   background-color: white;
   border-radius: 5px;
   background-color: var(--tui-background-elevation-1);
   border: 1px solid #ffffff;
-  box-shadow: 0px 3px 8px 3px rgb(0 0 0 / 20%);
+  box-shadow: 0 6px 15px 1px rgba(0, 0, 0, 0.12);
   max-width: 120px;
 }
+
 .floors {
   gap: 25px;
   display: flex;
@@ -380,22 +366,26 @@ const booking = async (cb?: any) => {
   padding-bottom: 1px;
   margin-top: 5%;
 }
+
 .floor1 {
   border-bottom: 1px solid #666666;
   color: black;
   font-size: 19.2px;
   background-color: var(--tui-background-elevation-1);
 }
+
 .floor2 {
   color: #717172;
   font-size: 19.2px;
   background-color: var(--tui-background-elevation-1);
 }
+
 .floor3 {
   color: #717172;
   font-size: 19.2px;
   background-color: var(--tui-background-elevation-1);
 }
+
 .sectors {
   gap: 25px;
   display: flex;
@@ -404,246 +394,86 @@ const booking = async (cb?: any) => {
   padding-bottom: 1px;
   margin-top: 5%;
 }
-.sector-pick {
-  border-bottom: 1px solid #666666;
-}
+
 .sectors1 {
   color: #717172;
   font-size: 19.2px;
   background-color: var(--tui-background-elevation-1);
 }
+
 .sectors2 {
   border-bottom: 1px solid #666666;
   font-size: 19.2px;
   background-color: var(--tui-background-elevation-1);
   color: black;
 }
+
 .sectors3 {
   color: #717172;
   font-size: 19.2px;
   background-color: var(--tui-background-elevation-1);
 }
+
 .sectors4 {
   color: #717172;
   font-size: 19.2px;
   background-color: var(--tui-background-elevation-1);
 }
+
 .parcking-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   max-width: 440px;
   margin-top: 13px;
-  grid-gap: 15px;
 }
-.pp {
-  color: #000000;
-  background-color: white;
-  font-size: 25px;
-  border-radius: 15px;
-  max-width: 50px;
-  min-height: 50px;
-  box-shadow: 0px 3px 8px 3px rgb(0 0 0 / 35%);
-  width: 50px;
-  height: 50px;
-}
+
 .park-place1 {
   color: #000000;
-  background-color: white;
+  background-color: #4da197;
   font-size: 25px;
   border-radius: 15px;
   max-width: 50px;
   min-height: 50px;
-  box-shadow: 0px 3px 8px 3px rgb(0 0 0 / 35%);
-  width: 50px;
-  height: 50px;
+  margin-top: 15px;
 }
+
 .park-place2 {
   color: #000000;
-  background-color: white;
+  background-color: #ff6666;
   font-size: 25px;
   border-radius: 15px;
   max-width: 50px;
   min-height: 50px;
   margin-top: 15px;
-  box-shadow: 0 6px 15px 1px rgba(0, 0, 0, 0.12);
 }
+
 .park-place3 {
   color: #000000;
-  background-color: white;
+  background-color: #596695;
   font-size: 25px;
   border-radius: 15px;
   max-width: 50px;
   min-height: 50px;
   margin-top: 15px;
-  box-shadow: 0 6px 15px 1px rgba(0, 0, 0, 0.12);
 }
+
 .park-place4 {
   color: #000000;
-  background-color: white;
+  background-color: #ff8863;
   font-size: 25px;
   border-radius: 15px;
   max-width: 50px;
   min-height: 50px;
   margin-top: 15px;
-  box-shadow: 0 6px 15px 1px rgba(0, 0, 0, 0.12);
 }
+
 .park-place5 {
   color: #000000;
-  background-color: white;
+  background-color: #ffdd2d;
   font-size: 25px;
   border-radius: 15px;
   max-width: 50px;
   min-height: 50px;
   margin-top: 15px;
-  box-shadow: 0 6px 15px 1px rgba(0, 0, 0, 0.12);
-}
-.purpur {
-  background-color: #596695;
-}
-.yellow {
-  background-color: #ffdd2d;
-}
-.orange {
-  background-color: #ffb320;
-}
-.red {
-  background-color: #ff8863;
-}
-.green {
-  background-color: #4da197;
-}
-.place-pick {
-  box-shadow: inset 0px 0px 15px 1px rgb(0 0 0 / 50%);
-}
-.ppi {
-  box-shadow: inset 0px 0px 15px 1px rgb(0 0 0 / 50%);
-}
-.place-map {
-  margin-top: 23px;
-}
-.park-tags {
-  display: flex;
-}
-.tags {
-  margin-left: 63px;
-}
-.place-num {
-  font-size: 28.8px;
-  border-bottom: 1px solid #d8dbde;
-  display: flex;
-  align-items: center;
-  padding-bottom: 5px;
-}
-.button-map {
-  background-color: #333333;
-  color: white;
-  border-radius: 7px;
-  font-size: 20px;
-  padding: 7px;
-  margin-left: 50px;
-  box-shadow: 0px 3px 8px 3px rgb(0 0 0 / 25%);
-}
-.tag-box {
-  background-color: #ffdd2d;
-  margin-top: 15px;
-  border-radius: 15px;
-  padding: 10px;
-  box-shadow: 0px 6px 8px 3px rgb(0 0 0 / 25%);
-}
-.about-place {
-  /* background-color: white; */
-  color: black;
-  font-size: 20px;
-  padding-left: 20px;
-  border-bottom: 1px solid black;
-}
-.bron {
-  display: flex;
-  justify-content: center;
-  color: white;
-  background-color: #333333;
-  border-radius: 15px;
-  font-size: 28.8px;
-  padding: 10px;
-  font-weight: 700;
-}
-.photo-place {
-  display: flex;
-  justify-content: center;
-  color: #333333;
-  background-color: white;
-  border-radius: 15px;
-  font-size: 24px;
-  text-align: center;
-  font-weight: 700;
-  text-align: center;
-  padding: 30px;
-  margin-bottom: 10px;
-}
-.symbol {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-}
-.purpur-circle {
-  width: 20px;
-  height: 20px;
-  background-color: #596695;
-  border-radius: 50%;
-  margin-right: 7px;
-  box-shadow: 0px 7px 25px 1px rgb(0 0 0 / 20%);
-}
-.green-circle {
-  width: 20px;
-  height: 20px;
-  background-color: #4da197;
-  border-radius: 50%;
-  margin-right: 7px;
-  margin-left: 12px;
-  box-shadow: 0px 7px 25px 1px rgb(0 0 0 / 20%);
-}
-.red-circle {
-  width: 20px;
-  height: 20px;
-  background-color: #ff6666;
-  border-radius: 50%;
-  margin-right: 7px;
-  margin-left: 12px;
-  box-shadow: 0px 7px 25px 1px rgb(0 0 0 / 20%);
-}
-.orange-circle {
-  width: 20px;
-  height: 20px;
-  background-color: #ffb320;
-  border-radius: 50%;
-  margin-right: 7px;
-  margin-left: 12px;
-  box-shadow: 0px 7px 25px 1px rgb(0 0 0 / 20%);
-}
-.footer-line {
-  border-bottom: 1px solid #d8dbde;
-  margin-top: 10px;
-}
-.menu {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-}
-.menu a {
-  color: black;
-  text-decoration: none;
-  margin-left: 10px;
-  background-color: #ffdd2d;
-  padding: 10px;
-  border-radius: 10px;
-}
-.blue-circle {
-  width: 20px;
-  height: 20px;
-  background-color: #4eafe5;
-  border-radius: 50%;
-  margin-right: 7px;
-  margin-left: 12px;
-  box-shadow: 0px 7px 25px 1px rgb(0 0 0 / 20%);
 }
 </style>

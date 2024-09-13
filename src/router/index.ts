@@ -3,8 +3,9 @@ import { RouteRecordRaw } from "vue-router";
 import AuthPage from "../views/AuthPage.vue";
 import HomePage from "@/views/HomePage.vue";
 import AddUserInOffice from "@/views/AddUserInOffice.vue";
-import Office from "@/views/Office.vue";
+import TheOffice from "@/views/TheOffice.vue";
 import ParkingSpace from "@/views/ParkingSpace.vue";
+import TheBooking from "@/views/TheBooking.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -29,12 +30,17 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/office",
     name: "Office",
-    component: Office,
+    component: TheOffice,
   },
   {
     path: "/parking-space",
     name: "ParkingSpace",
     component: ParkingSpace,
+  },
+  {
+    path: "/booking",
+    name: "TheBooking",
+    component: TheBooking,
   },
 ];
 

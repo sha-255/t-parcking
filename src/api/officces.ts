@@ -1,14 +1,33 @@
-import { API_STR, getHeaders } from "./";
+import { ACCESS_STR, API_STR, getHeaders } from "./";
 
 const headers = getHeaders();
 
-export const getAllOffices = async (): Promise<[] | undefined> => {
+export const getAllOffices = async () /*: Promise<[] | undefined>*/ => {
+  // try {
+  //   const response = await fetch(API_STR + "offices", {
+  //     method: "GET",
+  //     headers,
+  //   });
+  //   return (await response.json()).data as Promise<[]>;
+  // } catch (error) {
+  //   console.error(error);
+  // }
+  const myHeaders = new Headers();
+  myHeaders.append("Accept", "application/json");
+  myHeaders.append(
+    "Authorization",
+    "Bearer " + localStorage.getItem(ACCESS_STR)
+  );
+
+  const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+  };
+
   try {
-    const response = await fetch(API_STR + "offices", {
-      method: "GET",
-      headers: headers,
-    });
-    return (await response.json()).data as Promise<[]>;
+    const response = await fetch(API_STR + "offices", requestOptions);
+    const result = await response.json();
+    return await result.data;
   } catch (error) {
     console.error(error);
   }
