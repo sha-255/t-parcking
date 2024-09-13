@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from "@ionic/vue-router";
 import { RouteRecordRaw } from "vue-router";
 import AuthPage from "../views/AuthPage.vue";
 import HomePage from "@/views/HomePage.vue";
+import AddUserInOffice from "@/views/AddUserInOffice.vue";
+import Office from "@/views/Office.vue";
+import ParkingSpace from "@/views/ParkingSpace.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -17,6 +20,21 @@ const routes: Array<RouteRecordRaw> = [
     path: "/home",
     name: "Home",
     component: HomePage,
+  },
+  {
+    path: "/add-user-in-office",
+    name: "AddUserInOffice",
+    component: AddUserInOffice,
+  },
+  {
+    path: "/office",
+    name: "Office",
+    component: Office,
+  },
+  {
+    path: "/parking-space",
+    name: "ParkingSpace",
+    component: ParkingSpace,
   },
 ];
 

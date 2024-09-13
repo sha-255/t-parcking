@@ -29,9 +29,12 @@
 </button>
 
        </div>
-       <div class="parkovki">
-  Парковки
-</div>
+       <div class="menu">
+  <a href="/home" >Парковки</a>
+         <a href="/add-user-in-office" >Добавить пользователя в офис</a>
+         <a href="/office" >Добавить офис</a>
+         <a href="/parking-space">Добавить парковочные места</a>
+       </div>
       </div>
 <div class="main">
 <div class="left">
@@ -143,9 +146,9 @@
     <li>Пятое</li>
     <li>Шестое</li>
   </ul>
-  <div class="bron">
+  <button class="bron">
     Забронировать
-  </div>
+  </button>
   </div>
 </div>
 </div>
@@ -538,5 +541,17 @@ display: flex;
   border-bottom: 1px solid #D8DBDE;
   margin-top: 10px;
 }
-
+.menu{
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.menu a{
+  color:black;
+  text-decoration: none;
+  margin-left: 10px;
+  background-color: #FFDD2D;
+  padding: 10px;
+  border-radius: 10px;
+}
 </style>
