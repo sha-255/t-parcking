@@ -37,11 +37,11 @@
 <div class="left">
   <div class="adres-office">Адреса офисов</div>
   <div class="adress"></div>
-    <button class="adresses">Офис 1</button>
-    <button class="adresses2">Офис 2</button>
-    <button class="adresses">Офис 3</button>
-    <button class="adresses">Офис 4</button>
-    <button class="adresses">Офис 5</button>
+    <button class="adresses pick">Офис 1</button>
+    <button class="adresses pick">Офис 2</button>
+    <button class="adresses pick">Офис 3</button>
+    <button class="adresses pick">Офис 4</button>
+    <button class="adresses pick">Офис 5</button>
 </div>
 <div class="right">
 <div class="haract-avto"> Характеристики автомобиля</div>
@@ -69,18 +69,99 @@
 </div>
 <div class="park-tags">
  <div class="parcking-grid">
-  <button class="park-place1">1</button>
-  <button class="park-place2">2</button>
-  <button class="park-place3">3</button>
-  <button class="park-place4">4</button>
-  <button class="park-place5">5</button>
-  <button class="park-place1">1</button>
-  <button class="park-place1">1</button>
-  <button class="park-place1">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+  <button class="park-place1 orange green purpur red yellow place-pick">1</button>
+
+
 </div> 
+<div class="tags">
+  <div class="place-map">
+    <div class="place-num">
+    Место N12
+    <button class="button-map">Карта</button>
+  </div>
+  </div>
+  <div class="tag-box">
+    <div class="photo-place">
+      Место для вашего фото
+    </div>
+  <div class="about-place">
+    Описание места
+  </div>
+  <ul>
+    <li>Первое</li>
+    <li>Второе</li>
+    <li>Третье</li>
+    <li>Четвертое</li>
+    <li>Пятое</li>
+    <li>Шестое</li>
+  </ul>
+  <div class="bron">
+    Забронировать
+  </div>
+  </div>
+</div>
+</div>
+<div class="symbol">
+  <div class="purpur-circle"></div>
+  <div>Закреплено за сотрудником</div>
+  <div class="green-circle"></div>
+  <div>Свободно</div>
+  <div class="red-circle"></div>
+  <div>Занято</div>
+  <div class="orange-circle"></div>
+  <div>Занято, но не забранировано</div>
 </div>
 </div>
 </div>
+<div class="footer-line"></div>
 
     </ion-content>
   </ion-page>
@@ -166,25 +247,15 @@ display: flex;
   padding: 10px;
   background-color: var(--tui-background-elevation-1);
     border-radius: 15px;
-    box-shadow: 0 6px 15px 1px rgba(0, 0, 0, .12);
+    box-shadow: 0px 3px 8px 3px rgb(0 0 0 / 25%);
     font-size: 20px;
     color:black;
     padding-right: 130px;
     padding-top: 15px;
     padding-bottom: 15px;
 }
-.adresses2{
-  margin-top:15px;
-  border-radius:15px;
-  padding: 10px;
+.pick{
   background-color: #FFDD2D;
-    border-radius: 15px;
-    box-shadow: 0 6px 15px 1px rgba(0, 0, 0, .12);
-    font-size: 20px;
-    color:black;
-    padding-right: 130px;
-    padding-top: 15px;
-    padding-bottom: 15px;
 }
 .haract-avto{
   font-size: 1.5vw;
@@ -202,7 +273,7 @@ display: flex;
   border-radius: 5px;
   background-color: var(--tui-background-elevation-1);
   border: 1px solid #ffffff;
-  box-shadow: 0 6px 15px 1px rgba(0, 0, 0, .12);
+  box-shadow: 0px 3px 8px 3px rgb(0 0 0 / 20%);
   max-width: 120px;
 }
 .characteristics{
@@ -218,7 +289,7 @@ display: flex;
   border-radius: 5px;
   background-color: var(--tui-background-elevation-1);
   border: 1px solid #ffffff;
-  box-shadow: 0 6px 15px 1px rgba(0, 0, 0, .12);
+  box-shadow: 0px 3px 8px 3px rgb(0 0 0 / 20%);
   max-width: 120px;
 }
 .input-width{
@@ -227,7 +298,7 @@ display: flex;
   border-radius: 5px;
   background-color: var(--tui-background-elevation-1);
   border: 1px solid #ffffff;
-  box-shadow: 0 6px 15px 1px rgba(0, 0, 0, .12);
+  box-shadow: 0px 3px 8px 3px rgb(0 0 0 / 20%);
   max-width: 120px;
 }
 .floors{
@@ -262,6 +333,9 @@ display: flex;
   padding-bottom:1px;
   margin-top: 5%;
 }
+.sector-pick{
+  border-bottom: 1px solid #666666;
+}
 .sectors1{
   color: #717172;
   font-size: 19.2px;
@@ -288,50 +362,181 @@ display: flex;
   grid-template-columns: repeat(7, 1fr);
   max-width: 440px;
   margin-top: 13px;
+  grid-gap: 15px;
 }
 .park-place1{
   color: #000000;
-  background-color: #4DA197;
+  background-color: white;
   font-size: 25px;
   border-radius: 15px;
   max-width: 50px;
   min-height: 50px;
-  margin-top: 15px;
+  box-shadow: 0px 3px 8px 3px rgb(0 0 0 / 35%);
+  width: 50px;
+  height: 50px;
 }
 .park-place2{
   color: #000000;
-  background-color: #FF6666;
+  background-color: white;
   font-size: 25px;
   border-radius: 15px;
   max-width: 50px;
   min-height: 50px;
   margin-top: 15px;
+  box-shadow: 0 6px 15px 1px rgba(0, 0, 0, .12);
 }
 .park-place3{
   color: #000000;
-  background-color: #596695;
+  background-color: white;
   font-size: 25px;
   border-radius: 15px;
   max-width: 50px;
   min-height: 50px;
   margin-top: 15px;
+  box-shadow: 0 6px 15px 1px rgba(0, 0, 0, .12);
 }
 .park-place4{
   color: #000000;
-  background-color: #FF8863;
+  background-color: white;
   font-size: 25px;
   border-radius: 15px;
   max-width: 50px;
   min-height: 50px;
   margin-top: 15px;
+  box-shadow: 0 6px 15px 1px rgba(0, 0, 0, .12);
 }
 .park-place5{
   color: #000000;
-  background-color: #FFDD2D;
+  background-color: white;
   font-size: 25px;
   border-radius: 15px;
   max-width: 50px;
   min-height: 50px;
   margin-top: 15px;
+  box-shadow: 0 6px 15px 1px rgba(0, 0, 0, .12);
 }
+.purpur{
+  background-color: #596695;
+}
+.yellow{
+  background-color: #FFDD2D;
+}
+.orange{
+  background-color: #FFB320;
+}
+.red{
+  background-color: #FF8863;
+}
+.green{
+  background-color: #4DA197;
+}
+.place-pick{
+  box-shadow: inset 0px 0px 15px 1px rgb(0 0 0 / 50%);
+}
+.place-map{
+  margin-top: 23px;
+}
+.park-tags{
+  display: flex;
+}
+.tags{
+  margin-left: 63px;
+}
+.place-num{
+  font-size: 28.8px;
+  border-bottom: 1px solid #D8DBDE;
+  display: flex;
+  align-items: center;
+  padding-bottom: 5px;
+}
+.button-map{
+  background-color: #333333;
+  color:white;
+  border-radius: 7px;
+  font-size: 20px;
+  padding: 7px;
+  margin-left: 50px;
+  box-shadow: 0px 3px 8px 3px rgb(0 0 0 / 25%);
+}
+.tag-box{
+  background-color: #FFDD2D;
+  margin-top: 15px;
+  border-radius:15px;
+  padding: 10px;
+  box-shadow: 0px 6px 8px 3px rgb(0 0 0 / 25%);
+}
+.about-place{
+  /* background-color: white; */
+  color:black;
+  font-size: 20px;
+  padding-left: 20px;
+  border-bottom: 1px solid black;
+}
+.bron{
+  display: flex;
+  justify-content: center;
+  color: white;
+  background-color: #333333;
+  border-radius: 15px;
+  font-size: 28.8px;
+  padding: 10px;
+  font-weight: 700;
+}
+.photo-place{
+  display: flex;
+  justify-content: center;
+  color: #333333;
+  background-color: white;
+  border-radius: 15px;
+  font-size: 24px;
+  text-align: center;
+  font-weight: 700;
+  text-align: center;
+  padding: 30px;
+  margin-bottom: 10px;
+}
+.symbol{
+  margin-top: 20px;
+  display: flex;
+}
+.purpur-circle{
+  width: 20px;
+  height: 20px;
+  background-color:#596695;
+  border-radius: 50%;
+  margin-right: 7px;
+  box-shadow: 0px 7px 25px 1px rgb(0 0 0 / 20%);
+}
+.green-circle{
+  width: 20px;
+  height: 20px;
+  background-color:#4DA197;
+  border-radius: 50%;
+  margin-right: 7px;
+  margin-left: 12px;
+  box-shadow: 0px 7px 25px 1px rgb(0 0 0 / 20%);
+}
+.red-circle{
+  width: 20px;
+  height: 20px;
+  background-color:#FF6666;
+  border-radius: 50%;
+  margin-right: 7px;
+  margin-left: 12px;
+  box-shadow: 0px 7px 25px 1px rgb(0 0 0 / 20%);
+}
+.orange-circle{
+  width: 20px;
+  height: 20px;
+  background-color:#FFB320;
+  border-radius: 50%;
+  margin-right: 7px;
+  margin-left: 12px;
+  box-shadow: 0px 7px 25px 1px rgb(0 0 0 / 20%);
+}
+.footer-line{
+  border-bottom: 1px solid #D8DBDE;
+  margin-top: 10px;
+}
+
 </style>
