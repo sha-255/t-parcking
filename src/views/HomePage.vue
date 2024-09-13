@@ -152,6 +152,8 @@
   </div>
 </div>
 </div>
+</div>
+</div>
 <div class="symbol">
   <div class="purpur-circle"></div>
   <div>Закреплено за сотрудником</div>
@@ -160,9 +162,9 @@
   <div class="red-circle"></div>
   <div>Занято</div>
   <div class="orange-circle"></div>
-  <div>Занято, но не забранировано</div>
-</div>
-</div>
+  <div>Занято, но не забронировано</div>
+  <div class="blue-circle"></div>
+  <div>Забронировано</div>
 </div>
 <div class="footer-line"></div>
 
@@ -501,6 +503,7 @@ display: flex;
 .symbol{
   margin-top: 20px;
   display: flex;
+  justify-content: center;
 }
 .purpur-circle{
   width: 20px;
@@ -553,5 +556,14 @@ display: flex;
   background-color: #FFDD2D;
   padding: 10px;
   border-radius: 10px;
+}
+.blue-circle{
+  width: 20px;
+  height: 20px;
+  background-color:#4EAFE5;
+  border-radius: 50%;
+  margin-right: 7px;
+  margin-left: 12px;
+  box-shadow: 0px 7px 25px 1px rgb(0 0 0 / 20%);
 }
 </style>
