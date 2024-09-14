@@ -44,6 +44,7 @@
           v-model="registrateData.login"
         ></ion-input>
         <ion-input
+          type="password"
           placeholder="Пароль"
           style="border: 1px solid black !important; border-radius: 10px"
           v-model="registrateData.password"
@@ -84,8 +85,8 @@ onMounted(async () => {
 });
 
 const signInData = ref({
-  login: "Ivan@mail.ru",
-  password: "1234567890",
+  login: "",
+  password: "",
 });
 const registrateData = ref({
   family: "",
