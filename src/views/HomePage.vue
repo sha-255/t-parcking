@@ -67,9 +67,11 @@
         </div>
         <div class="menu">
           <a href="/home">Парковки</a>
-          <a href="/add-user-in-office">Добавить пользователя в офис</a>
-          <a href="/office">Добавить офис</a>
-          <a href="/parking-space">Добавить парковочные места</a>
+          <template v-if="userStore.userData?.access_level >= 100">
+            <a href="/add-user-in-office">Добавить пользователя в офис</a>
+            <a href="/office">Добавить офис</a>
+            <a href="/parking-space">Добавить парковочные места</a>
+          </template>
         </div>
       </div>
       <div class="main">
@@ -126,7 +128,7 @@
                 :class="{
                   pp: true,
                   ppi: selectedSpace === space.id,
-                  orange: space.status === 'booked_and_used',
+                  orange: space.status === 'booked_and_use',
                   green: space.status === 'free',
                   red: space.status === 'booked',
                   yellow: space.status === 'not_booked_and_use',

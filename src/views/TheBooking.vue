@@ -73,11 +73,46 @@
           <a href="/parking-space">Добавить парковочные места</a>
         </div>
       </div>
-      <main>
-        <div>
-          <button @click="yaNaMeste">Я на месте</button>
+      <main style="display: flex; align-items: center; justify-content: center">
+        <div
+          style="
+            background-color: black;
+            display: flex;
+            width: 600px;
+            height: 200px;
+            align-items: center;
+            justify-content: center;
+            margin: 40px;
+            border-radius: 16px;
+          "
+        >
+          <button
+            style="
+              margin: 20px;
+              width: 200px;
+              height: 50px;
+              border-radius: 10px;
+              background-color: #ffdd2d;
+              color: black;
+            "
+            @click="yaNaMeste"
+          >
+            Я на месте
+          </button>
           <br />
-          <button @click="otmena">Отменить запись</button>
+          <button
+            style="
+              margin: 20px;
+              width: 200px;
+              height: 50px;
+              border-radius: 10px;
+              background-color: #ffdd2d;
+              color: black;
+            "
+            @click="otmena"
+          >
+            Отменить запись
+          </button>
         </div>
         <!-- <form id="create-office-form"></form> -->
       </main>
@@ -97,8 +132,10 @@ import {
 import { onMounted } from "vue";
 import { ACCESS_STR } from "../api";
 import { API_STR } from "../api";
+import { useOfficesStore } from "@/stores/offices-store";
 
 const router = useIonRouter();
+const { getAll } = useOfficesStore();
 
 onMounted(() => {
   //TODO: fech
@@ -109,6 +146,7 @@ onMounted(() => {
 
 const yaNaMeste = async () => {
   //booked_and_used;
+  otmena();
   const ss = Number.parseInt(localStorage.getItem("ss"));
   const myHeaders = new Headers();
   myHeaders.append("Accept", "application/json");
@@ -119,7 +157,7 @@ const yaNaMeste = async () => {
   );
 
   const raw = JSON.stringify({
-    status: "booked_and_used",
+    status: "booked_and_use",
   });
 
   const requestOptions = {
@@ -135,6 +173,7 @@ const yaNaMeste = async () => {
     );
     const result = await response.json();
     console.log(result);
+    getAll();
     router.push("/home");
   } catch (error) {
     console.error(error);
@@ -169,6 +208,7 @@ const otmena = async () => {
     );
     const result = await response.json();
     console.log(result);
+    getAll();
     router.push("/home");
   } catch (error) {
     console.error(error);

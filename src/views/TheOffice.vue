@@ -73,11 +73,34 @@
           <a href="/parking-space">Добавить парковочные места</a>
         </div>
       </div>
-      <main>
-        <form action="" id="create-office-form">
-          <input name="name" placeholder="название офиса" />
-          <button>Отправить</button>
-        </form>
+      <main style="display: flex; align-items: center; justify-content: center">
+        <div
+          style="
+            background-color: black;
+            display: flex;
+            width: 600px;
+            align-items: center;
+            justify-content: center;
+            margin: 40px;
+            border-radius: 16px;
+            flex-direction: column;
+          "
+        >
+          <h3 style="color: green" v-if="ex">Успешно!</h3>
+          <input
+            class="btn"
+            type="text"
+            placeholder="Название оффиса"
+            v-model="officeName"
+          />
+          <input
+            class="btn"
+            type="text"
+            placeholder="Адресс"
+            v-model="address"
+          />
+          <button class="btn" @click="send">Отправить</button>
+        </div>
       </main>
     </ion-content>
   </ion-page>
@@ -92,10 +115,18 @@ import {
   IonTitle,
   useIonRouter,
 } from "@ionic/vue";
-import { onMounted } from "vue";
-import { ACCESS_STR } from "../api";
+import { onMounted, ref, watch } from "vue";
+import { ACCESS_STR, API_STR } from "../api";
 
 const router = useIonRouter();
+
+const officeName = ref("");
+const address = ref("");
+
+const ex = ref(false);
+
+watch(officeName, () => (ex.value = false));
+watch(address, () => (ex.value = false));
 
 onMounted(() => {
   //TODO: fech
@@ -103,8 +134,49 @@ onMounted(() => {
     router.push("/auth");
   }
 });
+
+const send = async () => {
+  const myHeaders = new Headers();
+  myHeaders.append("Accept", "application/json");
+  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append(
+    "Authorization",
+    "Bearer " + localStorage.getItem(ACCESS_STR)
+  );
+
+  const raw = JSON.stringify({
+    name: officeName.value,
+    street: address.value,
+  });
+
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+  };
+
+  try {
+    const response = await fetch(API_STR + "offices", requestOptions);
+    const result = await response.text();
+    console.log(result);
+    ex.value = true;
+  } catch (error) {
+    console.error(error);
+  }
+};
 </script>
 <style scoped>
+.btn {
+  margin: 20px;
+  width: 200px;
+  height: 50px;
+  border-radius: 10px;
+  background-color: #ffdd2d;
+  color: black;
+}
+.sl {
+  background-color: #99841c;
+}
 .header {
   background-color: #f6f7f8;
   padding-bottom: 30px;
